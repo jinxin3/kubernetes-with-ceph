@@ -1,0 +1,21 @@
+kind: Pod
+apiVersion: v1
+metadata:
+  name: test-pod3
+spec:
+  containers:
+  - name: test-pod
+    image: 192.168.201.32:4000/fio:latest
+    args:
+    - /bin/bash
+    - -c
+    - sleep 30000
+    volumeMounts:
+    - name: pvc
+      mountPath: "/mnt"
+  restartPolicy: "Never"
+  volumes:
+  - name: pvc
+    persistentVolumeClaim:
+      claimName: claim1
+
